@@ -53,7 +53,7 @@ async def dl_link(event):
     es = dt.now()
     kk = dl.split("/")[-1]
     aa = kk.split(".")[-1]
-    newFile = dl.replace(f"downloads/", "").replace(f"_", " ")
+    newFile = dl.replace(f"downloads/", "").replace(f"_", " ").replace(f"[SubsPlease]", " ")
     rr = "encode"
     bb = kk.replace(f".{aa}", ".mkv")
     out = f"{rr}/{bb}"
@@ -188,7 +188,7 @@ async def encod(event):
         kk = dl.split("/")[-1]
         aa = kk.split(".")[-1]
         rr = f"encode"
-        bb = kk.replace(f".{aa}", ".mkv")
+        bb = kk.replace(f"@Anime_Gallery", "@animxt")
         newFile = dl.replace(f"downloads/", "").replace(f"_", " ")
         out = f"{rr}/{bb}"
         thum = "thumb.jpg"
