@@ -26,29 +26,51 @@ async def stats(e):
 
 
 async def dl_link(event):
+
     if not event.is_private:
+
         return
+
     if str(event.sender_id) not in OWNER and event.sender_id !=DEV:
+
         return
+
     link, name = "", ""
+
     try:
-        link = event.text.split()[1]
-        name = event.text.split()[2]
+
+        link, name = event.text.split(':')[1], event.text.split(':')[2]
+
     except BaseException:
+
         pass
+
     if not link:
+
         return
+
     if WORKING or QUEUE:
+
         QUEUE.update({link: name})
+
         return await event.reply(f"**✅ Added {link} in QUEUE**")
+
     WORKING.append(1)
+
     s = dt.now()
+
     xxx = await event.reply("**📥 Downloading...**")
+
     try:
+
         dl = await fast_download(xxx, link, name)
+
     except Exception as er:
+
         WORKING.clear()
+
         LOGS.info(er)
+
         return
     es = dt.now()
     kk = dl.split("/")[-1]
